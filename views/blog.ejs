@@ -122,7 +122,21 @@
           />
           <div class="card-body">
             <h1 class="card-title"><%= blog.title %></h1>
-            <pre class="card-text" style="overflow: hidden; text-align: justify;"><%= blog.body%></pre>
+            <pre
+              class="card-text"
+              style="overflow: hidden; text-align: justify"
+            >
+<%= blog.body%></pre
+            >
+            <p class="card-text" style="overflow: hidden; text-align: justify">
+              Video :
+              <a
+                target="_blank"
+                style="text-decoration: none"
+                href="<%= blog.videoLink %>"
+                ><%= blog.videoLink %></a
+              >
+            </p>
             <p class="author-text">Written by <%= blog.createdBy.name %></p>
           </div>
         </div>

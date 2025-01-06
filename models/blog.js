@@ -1,22 +1,28 @@
 const mongoose = require("mongoose");
 
-const blogSchema = new mongoose.Schema({
-    title:{
-        type:String,
-        required:true
+const blogSchema = new mongoose.Schema(
+  {
+    title: {
+      type: String,
+      required: true,
     },
-    body:{
-        type:String,
-        required:true
+    body: {
+      type: String,
+      required: true,
     },
-    coverImgUrl:{
-        type:String
+    coverImgUrl: {
+      type: String,
     },
-    createdBy : {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User',
-    }
-},{timestamps:true});
+    videoLink: {
+      type: String,
+    },
+    createdBy: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+    },
+  },
+  { timestamps: true }
+);
 
-const Blog = mongoose.model("blog",blogSchema);
+const Blog = mongoose.model("blog", blogSchema);
 module.exports = Blog;

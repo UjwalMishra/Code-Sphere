@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('./partials/head') %>
+    <title>Home Page</title>
+    <style>
+      body {
+        background-color: #121212;
+        color: #e0e0e0;
+        font-family: "Poppins", sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+      .container {
+        margin: 80px auto 60px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 30px;
+      }
+      .card {
+        background-color: #1e1e1e;
+        border: 1px solid #292929;
+        border-radius: 12px;
+        overflow: hidden;
+        transition: transform 0.4s ease, box-shadow 0.4s ease;
+        width: 340px;
+        display: flex;
+        flex-direction: column;
+      }
+      .card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.9);
+      }
+      .card img {
+        width: 100%;
+        height: 220px;
+        object-fit: cover;
+      }
+      .card-body {
+        padding: 24px;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+      .card-title {
+        font-size: 1.6rem;
+        margin-bottom: 15px;
+        color: #f1f1f1;
+      }
+      .card-text {
+        color: #b0b0b0;
+        font-size: 1rem;
+        line-height: 1.6;
+        margin-bottom: 30px;
+      }
+      .btn-primary {
+        background-color: #7d2ae8;
+        border: none;
+        padding: 14px;
+        border-radius: 8px;
+        font-size: 1rem;
+        color: #fff;
+        text-align: center;
+        width: 100%;
+        transition: background 0.3s ease, transform 0.2s ease;
+        cursor: pointer;
+        text-decoration: none;
+        font-weight: 500;
+      }
+      .btn-primary:hover {
+        background-color: #591ea5;
+        transform: scale(1.02);
+      }
+      h1 {
+        text-align: center;
+        margin: 40px 0 20px;
+        font-size: 3rem;
+        font-weight: 700;
+      }
+      .empty-message {
+        text-align: center;
+        margin: 120px 0;
+        font-size: 1.4rem;
+        color: #a0a0a0;
+      }
+    </style>
+  </head>
+  <body>
+    <%- include("./partials/navbar") %>
+
+    <h1>My Blogs</h1>
+
+    <% if (locals.blogs && blogs.length > 0) { %>
+    <div class="container">
+      <% blogs.forEach(blog => { %>
+      <div class="card">
+        <img
+          src="<%= blog.coverImgUrl %>"
+          class="card-img-top"
+          alt="Blog Image"
+        />
+        <div class="card-body">
+          <div>
+            <h5 class="card-title">
+              <%= blog.title.length > 20 ? blog.title.substring(0, 20) + "..." :
+              blog.title %>
+            </h5>
+            <p class="card-text"><%= blog.body.substring(0, 80) %>...</p>
+          </div>
+          <% if (locals.user) { %>
+          <a href="/blog/<%= blog._id %>" class="btn-primary mt-3">Read More</a>
+          <% } else { %>
+          <a href="/user/signin" class="btn-primary mt-3">Login to Read More</a>
+          <% } %>
+        </div>
+      </div>
+      <% }) %>
+    </div>
+    <% } else { %>
+    <p class="empty-message">
+      No blogs here right now. Start by sharing your first blog!
+    </p>
+    <% } %> <%- include('./partials/scripts') %>
+  </body>
+</html>

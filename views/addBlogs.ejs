@@ -1,101 +1,111 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-   <%- include('./partials/head') %>
+  <head>
+    <%- include('./partials/head') %>
     <title>Add New Blog Page</title>
     <style>
-        body {
-            background-color: #121212;
-            color: #e0e0e0;
-            font-family: 'Poppins', sans-serif;
-        }
-        .container {
-            max-width: 650px;
-            margin: 40px auto;
-            padding: 30px;
-            background-color: #1e1e1e;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
-        }
-        .form-label {
-            font-size: 1.1rem;
-            margin-bottom: 8px;
-        }
-        .form-control {
-            background-color: #2a2a2a;
-            border: 1px solid #444;
-            color: #e0e0e0;
-            font-size: 1rem;
-        }
-        .form-control::placeholder {
-            color: #888;
-        }
-        .btn-primary {
-            background-color: #7d2ae8;
-            border: none;
-            font-size: 1.1rem;
-        }
-        .btn-primary:hover {
-            background-color: #591EA5;
-        }
-        h2 {
-            margin-bottom: 25px;
-            font-size: 1.8rem;
-        }
-        textarea.form-control {
-            height: 120px;
-        }
-        input[type="file"]::file-selector-button {
-            background-color: #fff;
-            color: #000;
-            border: none;
-            padding: 6px 12px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
+      body {
+        background-color: #121212;
+        color: #e0e0e0;
+        font-family: "Poppins", sans-serif;
+      }
+      .container {
+        max-width: 650px;
+        margin: 40px auto;
+        padding: 30px;
+        background-color: #1e1e1e;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+      }
+      .form-label {
+        font-size: 1.1rem;
+        margin-bottom: 8px;
+      }
+      .form-control {
+        background-color: #2a2a2a;
+        border: 1px solid #444;
+        color: #e0e0e0;
+        font-size: 1rem;
+      }
+      .form-control::placeholder {
+        color: #888;
+      }
+      .btn-primary {
+        background-color: #7d2ae8;
+        border: none;
+        font-size: 1.1rem;
+      }
+      .btn-primary:hover {
+        background-color: #591ea5;
+      }
+      h2 {
+        margin-bottom: 25px;
+        font-size: 1.8rem;
+      }
+      textarea.form-control {
+        height: 120px;
+      }
+      input[type="file"]::file-selector-button {
+        background-color: #fff;
+        color: #000;
+        border: none;
+        padding: 6px 12px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <%- include("./partials/navbar") %>
 
     <div class="container">
-        <h2 class="text-center">Add Your Thoughts</h2>
-        <form action="/blog" method="post" enctype="multipart/form-data">
-          <div class="mb-3">
-            <label for="title" class="form-label">Title</label>
-            <input
-              type="text"
-              name="title"
-              class="form-control"
-              id="title"
-              placeholder="Enter your Title"
-              required
-            />
-          </div>
-          <div class="mb-4">
-            <label for="desc" class="form-label">Description</label>
-            <textarea
-              name="desc"
-              class="form-control"
-              id="desc"
-              placeholder="Write your thoughts here..."
-              required
-            ></textarea>
-          </div>
-          <div class="mb-4">
-            <label for="coverImg" class="form-label">Upload Image</label>
-            <input
-              type="file"
-              name="coverImg"
-              class="form-control"
-              id="coverImg"
-            />
-          </div>
-          <button type="submit" class="btn btn-primary w-100">Create Blog</button>
-        </form>
-      </div>
+      <h2 class="text-center">Add Your Thoughts</h2>
+      <form action="/blog" method="post" enctype="multipart/form-data">
+        <div class="mb-3">
+          <label for="title" class="form-label">Title</label>
+          <input
+            type="text"
+            name="title"
+            class="form-control"
+            id="title"
+            placeholder="Enter your Title"
+            required
+          />
+        </div>
+        <div class="mb-4">
+          <label for="desc" class="form-label">Description</label>
+          <textarea
+            name="desc"
+            class="form-control"
+            id="desc"
+            placeholder="Write your thoughts here..."
+            required
+          ></textarea>
+        </div>
+        <div class="mb-4">
+          <label for="coverImg" class="form-label">Upload Image</label>
+          <input
+            type="file"
+            name="coverImg"
+            class="form-control"
+            id="coverImg"
+          />
+        </div>
+        <div class="mb-3">
+          <label for="videoLink" class="form-label">Video Link</label>
+          <input
+            type="text"
+            name="videoLink"
+            class="form-control"
+            id="videoLink"
+            placeholder="Enter video link"
+          />
+        </div>
+        <button type="submit" class="btn btn-primary w-100">Create Blog</button>
+      </form>
+    </div>
 
     <%- include('./partials/scripts') %>
-</body>
+  </body>
 </html>
