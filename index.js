@@ -5,9 +5,12 @@ const { dbConnect } = require("./config/dbConnection");
 const path = require("path");
 const cookieParser = require("cookie-parser");
 
-const {checkAuthCookie,restrictToLoggedinUserOnly} = require("./middlewares/authentication");
+const {
+  checkAuthCookie,
+  restrictToLoggedinUserOnly,
+} = require("./middlewares/authentication");
 
-//importing routes 
+//importing routes
 const userRoutes = require("./routes/user");
 const blogRoutes = require("./routes/blog");
 //importing Model
@@ -19,7 +22,7 @@ const PORT = process.env.PORT || 8000;
 //middlewares
 app.set("view engine", "ejs");
 app.set("views", path.resolve("./views"));
-app.use(express.urlencoded({extented:false}));
+app.use(express.urlencoded({ extented: false }));
 app.use(cookieParser());
 app.use(checkAuthCookie("token"));
 app.use(express.static(path.resolve(__dirname, "./public")));
@@ -28,16 +31,27 @@ app.use(express.static(path.resolve(__dirname, "./public")));
 dbConnect();
 
 //home route --> default one
-app.get("/",async(req,res) => {
-    const allBlogs = await Blog.find({});
-    res.render("home",{
-        user : req.user,
-        blogs : allBlogs
+app.get("/", async (req, res) => {
+  const { category } = req.query || "";
+
+  let filter = {};
+  if (category) {
+    filter.category = category;
+  }
+
+  try {
+    const allBlogs = await Blog.find(filter);
+    res.render("home", {
+      user: req.user,
+      blogs: allBlogs,
     });
+  } catch (err) {
+    console.log(err);
+  }
 });
 
 //other routes
-app.use("/user",userRoutes);
-app.use("/blog",restrictToLoggedinUserOnly,blogRoutes);
+app.use("/user", userRoutes);
+app.use("/blog", restrictToLoggedinUserOnly, blogRoutes);
 
-app.listen(PORT, ()=> console.log("Server started at",PORT));
+app.listen(PORT, () => console.log("Server started at", PORT));

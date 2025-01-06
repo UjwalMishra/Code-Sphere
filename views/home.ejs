@@ -70,7 +70,7 @@
         font-weight: 500;
       }
       .btn-primary:hover {
-        background-color: #591EA5;
+        background-color: #591ea5;
         transform: scale(1.02);
       }
       h1 {
@@ -85,12 +85,86 @@
         font-size: 1.4rem;
         color: #a0a0a0;
       }
+      .category-filter {
+        display: flex;
+        justify-content: center;
+        margin: 40px 0;
+      }
+      .button-group {
+        display: flex;
+        gap: 15px;
+        flex-wrap: wrap;
+      }
+      .category-btn {
+        background-color: #2e2e2e;
+        color: #e0e0e0;
+        border: none;
+        padding: 12px 28px;
+        border-radius: 8px;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background-color 0.3s, transform 0.2s;
+      }
+      .category-btn:hover {
+        background-color: #7d2ae8;
+        transform: translateY(-4px);
+      }
+      .category-btn.active {
+        background-color: #7d2ae8;
+        color: #fff;
+        font-weight: 600;
+        transform: scale(1.05);
+      }
     </style>
   </head>
   <body>
     <%- include("./partials/navbar") %>
 
     <h1>Welcome to Our Blog</h1>
+    <form action="/" method="get" class="category-filter">
+      <div class="button-group">
+        <button
+          type="submit"
+          name="category"
+          value=""
+          class="category-btn <%= locals.selectedCategory === '' ? 'active' : '' %>"
+        >
+          All
+        </button>
+        <button
+          type="submit"
+          name="category"
+          value="Web-Dev"
+          class="category-btn <%= locals.selectedCategory === 'Web-Dev' ? 'active' : '' %>"
+        >
+          Web Dev
+        </button>
+        <button
+          type="submit"
+          name="category"
+          value="DSA"
+          class="category-btn <%= locals.selectedCategory === 'DSA' ? 'active' : '' %>"
+        >
+          DSA
+        </button>
+        <button
+          type="submit"
+          name="category"
+          value="Programming-Languages"
+          class="category-btn <%= locals.selectedCategory === 'Programming-Languages' ? 'active' : '' %>"
+        >
+          Programming Languages
+        </button>
+        <button
+          type="submit"
+          name="category"
+          value="AI-ML"
+          class="category-btn <%= locals.selectedCategory === 'AI-ML' ? 'active' : '' %>"
+        >
+          AI/ML
+        </button>
+      </div>
+    </form>
 
     <% if (locals.blogs && blogs.length > 0) { %>
     <div class="container">

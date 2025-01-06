@@ -16,11 +16,12 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 const addBlogController = async (req, res) => {
-  const { title, desc, videoLink } = req.body;
+  const { title, desc, videoLink, category } = req.body;
   const blog = await Blog.create({
     title: title,
     body: desc,
     videoLink: videoLink,
+    category: category,
     coverImgUrl: `/uploads/${req.file.filename}`,
     createdBy: req.user._id,
   });
