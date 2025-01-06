@@ -34,8 +34,6 @@ const signinController = async(req,res)=>{
         });
     }
     user.password = undefined;
-    console.log(user);
-
     //returning token
     const token = createTokenForUser(user);
 

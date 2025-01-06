@@ -1,18 +1,28 @@
 const { validateToken } = require("../services/authentication");
 
-function checkAuthCookie(cookieName){
-    return (req,res,next) => {
+function checkAuthCookie(cookieName) {
+    return (req, res, next) => {
         const tokenCookieValue = req.cookies[cookieName];
-        if(!tokenCookieValue){
+        if (!tokenCookieValue) {
             return next();
         }
-        try{
+        try {
             const userPayload = validateToken(tokenCookieValue);
             req.user = userPayload;
+            return next();
+        } catch (err) {
+            console.error("Token validation failed:", err);
+            return res.redirect("/user/signin");
         }
-        catch(err){}
-        return next();
     }
 }
 
-module.exports = checkAuthCookie;
+async function restrictToLoggedinUserOnly(req,res,next){
+    const tokenVal = req.cookies.token;
+    //validations
+    if(!tokenVal){
+        return res.redirect("/user/signin");
+    }
+    next();
+}
+module.exports = {checkAuthCookie,restrictToLoggedinUserOnly};

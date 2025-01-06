@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('./partials/head') %>
+    <title>About Page</title>
+    <style>
+      body {
+        font-family: "Poppins", sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #121212;
+        color: #e0e0e0;
+      }
+      .container {
+        background-image: url("https://plus.unsplash.com/premium_photo-1673637379460-8ee1ec6d219c?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+        width: 800px;
+        height: 400px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 50px;
+      }
+      .left {
+        background: linear-gradient(to bottom, #3c3c3c, #000);
+        color: #fff;
+        text-align: center;
+        padding: 50px 30px;
+        width: 45%;
+        height: 100%;
+        margin-left: -20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+      }
+      .left .dp {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+      }
+      .social-icons {
+        margin-top: -30px;
+        display: flex;
+      }
+      .social-icons a {
+        margin: 0 10px;
+        color: #fff;
+        font-size: 20px;
+        text-decoration: none;
+      }
+      .right {
+        padding: 40px;
+        width: 60%;
+      }
+      .right h1 {
+        margin-top: -80px;
+        font-size: 3em;
+        margin-bottom: 30px;
+      }
+      .right p {
+        margin: 5px 0 20px;
+        color: #b0b0b0;
+      }
+      .contact-info div {
+        display: flex;
+        align-items: center;
+        margin: 15px 0;
+      }
+      .contact-info div img {
+        width: 25px;
+        margin-right: 15px;
+      }
+      .contact-info a {
+        text-decoration: none;
+        color: #fff;
+      }
+      nav {
+        position: fixed;
+        top: 0;
+        width: 100%;
+      }
+      .mussu {
+        transition: all 300ms ease-in-out;
+      }
+      .mussu:hover {
+        transform: scale(1.2);
+        filter: drop-shadow(0 0 3em #fff);
+      }
+      .maindp {
+        background: #fff;
+        border-radius: 50%;
+        width: 154px;
+        height: 154px;
+        transition: all 300ms ease-in-out;
+      }
+      .maindp:hover{
+        filter: drop-shadow(0 0 2em rgba(255, 255, 255, 0.1));
+
+      }
+    </style>
+  </head>
+  <body>
+    <nav><%- include("./partials/navbar") %></nav>
+    <div class="container">
+      <div class="left">
+        <div class="maindp">
+          <img
+            class="dp"
+            src="https://media.licdn.com/dms/image/v2/D5603AQEfkoWRKYtmsQ/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1705571979055?e=1741824000&v=beta&t=SVrHFl6ZyfDue7TIVqrSDhDQLFoZ7ZmqZgZywWiWAUA"
+            alt="Profile Picture"
+          />
+        </div>
+        <p>Ujwal Mishra</p>
+        <div class="social-icons">
+          <div class="mussu">
+            <a href="https://www.linkedin.com/in/ujwalmishra/" target="_blank"
+              ><img
+                src="https://img.icons8.com/?size=48&id=xuvGCOXi8Wyg&format=png"
+                style="height: 30px; width: 30px"
+                alt=""
+            /></a>
+          </div>
+          <div class="mussu">
+            <a href="mailto:ujwalcse01@gmail.com" target="_blank"
+              ><img
+                src="https://img.icons8.com/?size=48&id=OumT4lIcOllS&format=png"
+                style="height: 30px; width: 30px"
+                alt=""
+            /></a>
+          </div>
+          <div class="mussu">
+            <a href="https://github.com/UjwalMishra" target="_blank"
+              ><img
+                src="https://img.icons8.com/ios11/512/FFFFFF/github.png"
+                style="height: 30px; width: 30px"
+                alt=""
+            /></a>
+          </div>
+        </div>
+      </div>
+      <div class="right">
+        <h1>Contact Us</h1>
+
+        <div class="contact-info">
+          <div>
+            <img
+              src="https://img.icons8.com/?size=48&id=OumT4lIcOllS&format=png"
+              alt="Mail Icon"
+            />
+            <a href="mailto:ujwalcse01@gmail.com">ujwalcse01@gmail.com</a>
+          </div>
+          <div>
+            <img
+              src="https://img.icons8.com/?size=48&id=ufkkYBXJSuPy&format=png"
+              alt="Phone Icon"
+            />
+            <span>7888-xxxx-xx</span>
+          </div>
+          <div>
+            <img
+              src="https://img.icons8.com/?size=48&id=13800&format=png"
+              alt="Phone Icon"
+            />
+            <span>Amritsar</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

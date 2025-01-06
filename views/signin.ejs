@@ -9,11 +9,16 @@
         color: #fff;
         font-family: "Poppins", sans-serif;
         height: 100vh;
+      }
+      .container1 {
         display: flex;
+        flex-direction: column;
         align-items: center;
         justify-content: center;
-        padding-top: 70px;
+        margin-top: 50px;
+        position: relative; /* Ensures alert is positioned relative to this */
       }
+
       .wrapper {
         display: flex;
         flex-direction: column;
@@ -21,6 +26,7 @@
         justify-content: center;
         width: 100%;
         max-width: 500px;
+        position: relative; /* Makes alert position absolute relative to this wrapper */
       }
       .container {
         width: 100%;
@@ -48,8 +54,9 @@
         border-color: #3b82f6;
         box-shadow: 0 0 8px rgba(59, 130, 246, 0.6);
       }
-      .btn-primary {
-        background-color: #3b82f6;
+      .btn-primary1 {
+        color: #fff;
+        background-color: #7d2ae8;
         border: none;
         padding: 14px;
         border-radius: 8px;
@@ -57,8 +64,12 @@
         font-weight: 500;
         transition: background-color 0.3s ease, transform 0.2s ease;
       }
-      .btn-primary:hover {
-        background-color: #2563eb;
+      .btn-primary1:hover {
+        background-color: #591ea5;
+        transform: scale(1.03);
+      }
+      .btn-primary1:focus {
+        background-color: #591ea5;
         transform: scale(1.03);
       }
       .alert-danger {
@@ -68,10 +79,14 @@
         border-radius: 6px;
         padding: 12px;
         text-align: center;
-        margin-bottom: 20px;
-        width: 100%;
+        width: 70%;
         opacity: 1;
         transition: opacity 0.6s ease;
+        position: absolute;
+        top: -50px; /* Adjust to fit nicely above the form */
+        left: auto;
+        right: auto;
+        z-index: 1;
       }
       .alert-hide {
         opacity: 0;
@@ -83,44 +98,47 @@
     </style>
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-      <%- include('./partials/navbar') %>
-    </nav>
+    <%- include("./partials/navbar") %>
+    <div class="container1">
+      <div class="wrapper">
+        <% if (locals.error) { %>
+        <div id="alertBox" class="alert alert-danger" role="alert">
+          <%= locals.error %>
+        </div>
+        <% } %>
 
-    <div class="wrapper">
-      <% if (locals.error) { %>
-      <div id="alertBox" class="alert alert-danger" role="alert">
-        <%= locals.error %>
-      </div>
-      <% } %>
-
-      <div class="container">
-        <h2 class="text-center">Create Account</h2>
-        <form action="/user/signin" method="post">
-          <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">Email</label>
-            <input
-              type="email"
-              name="email"
-              class="form-control"
-              id="exampleInputEmail1"
-              placeholder="Enter your email"
-            />
-          </div>
-          <div class="mb-4">
-            <label for="exampleInputPassword1" class="form-label"
-              >Password</label
-            >
-            <input
-              type="text"
-              name="password"
-              class="form-control"
-              id="exampleInputPassword1"
-              placeholder="Enter password"
-            />
-          </div>
-          <button type="submit" class="btn btn-primary w-100">Sign Up</button>
-        </form>
+        <div class="container">
+          <h2 class="text-center">Create Account</h2>
+          <form action="/user/signin" method="post">
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label">Email</label>
+              <input
+                type="email"
+                name="email"
+                class="form-control"
+                id="exampleInputEmail1"
+                placeholder="Enter your email"
+                required
+              />
+            </div>
+            <div class="mb-4">
+              <label for="exampleInputPassword1" class="form-label"
+                >Password</label
+              >
+              <input
+                type="password"
+                name="password"
+                class="form-control"
+                id="exampleInputPassword1"
+                placeholder="Enter password"
+                required
+              />
+            </div>
+            <button type="submit" class="btn btn-primary1 w-100">
+              Sign In
+            </button>
+          </form>
+        </div>
       </div>
     </div>
 
@@ -133,8 +151,8 @@
         if (alertBox) {
           setTimeout(() => {
             alertBox.classList.add("alert-hide");
-            setTimeout(() => (alertBox.style.display = "none"), 600); // Wait for fade-out before hiding
-          }, 3000); // 3-second timer
+            setTimeout(() => (alertBox.style.display = "none"), 600);
+          }, 3000);
         }
       });
     </script>

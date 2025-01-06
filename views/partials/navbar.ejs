@@ -1,8 +1,62 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">Thoughts</a>
+<nav
+  class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm"
+  style="height: 60px; position: sticky; top: 0; z-index: 1"
+>
+  <div
+    class="container-fluid d-flex align-items-center justify-content-between px-4"
+    style="margin-left: 20px; margin-right: 20px"
+  >
+    <!-- BlogEra Brand (Left Side) -->
+    <a class="navbar-brand fw-bold fs-3" href="/" style="letter-spacing: 1.5px">
+      <img
+        src="https://img.icons8.com/?size=48&id=Oi6NZDZTenrC&format=png"
+        alt=""
+      />
+      BlogEra
+    </a>
+
+    <!-- Centered Navbar Links -->
+    <div
+      class="d-none d-lg-flex flex-grow-1 justify-content-center position-absolute start-50 translate-middle-x"
+    >
+      <ul class="navbar-nav gap-3 align-items-center">
+        <li class="nav-item">
+          <a class="nav-link nav-hover hover-underline-animation" style="font-weight: 600;" href="/">
+            Home
+          </a>
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link nav-hover hover-underline-animation"
+            href="/user/aboutus"  style="font-weight: 600;"
+          >
+            About
+          </a>
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link nav-hover hover-underline-animation"
+            href="/user/contactus"  style="font-weight: 600;"
+          >
+            Contact Us
+          </a>
+        </li>
+        <% if (locals.user) { %>
+        <li class="nav-item">
+          <a
+            class="nav-link nav-hover hover-underline-animation"
+            href="/blog/addblog"  style="font-weight: 600;"
+          >
+            Add Thoughts
+          </a>
+        </li>
+        <% } %>
+      </ul>
+    </div>
+
+    <!-- Navbar Toggler for Mobile -->
     <button
-      class="navbar-toggler"
+      class="navbar-toggler border-0"
       type="button"
       data-bs-toggle="collapse"
       data-bs-target="#navbarNavDropdown"
@@ -12,48 +66,161 @@
     >
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarNavDropdown">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
-        </li>
-        <% if (locals.user) { %>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Add Thoughts</a>
-        </li>
 
+    <!-- Right Side (User/Signup/Login) -->
+    <div
+      class="collapse navbar-collapse justify-content-end"
+      id="navbarNavDropdown"
+    >
+      <ul class="navbar-nav gap-3 align-items-center">
+        <% if (locals.user) { %>
         <li class="nav-item dropdown">
           <a
-            class="nav-link dropdown-toggle"
+            class="nav-link dropdown-toggle d-flex align-items-center nav-hover"
             href="#"
             role="button"
             data-bs-toggle="dropdown"
             aria-expanded="false"
+            style="font-weight: 600;"
           >
             <%= locals.user.name %>
           </a>
-          <ul class="dropdown-menu dropdown-menu-dark">
-            <li><a class="dropdown-item" href="/user/logout">Logout</a></li>
+          <ul class="dropdown-menu dropdown-menu-end shadow button">
+            <li>
+              <a class="button"  href="/user/logout">Logout</a>
+            </li>
           </ul>
         </li>
         <% } else { %>
-        <li class="nav-item dropdown">
-          <a
-            class="nav-link dropdown-toggle"
-            href="#"
-            role="button"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-          >
-            Login / Signup
-          </a>
-          <ul class="dropdown-menu dropdown-menu-dark">
-            <li><a class="dropdown-item" href="/user/signin">Login</a></li>
-            <li><a class="dropdown-item" href="/user/signup">Signup</a></li>
-          </ul>
+        <li>
+          <a class="button" href="/user/signin">Login</a>
+        </li>
+        <li>
+          <a class="button" href="/user/signup">Signup</a>
         </li>
         <% } %>
       </ul>
     </div>
   </div>
 </nav>
+<style>
+  .hover-underline-animation {
+    display: inline-block;
+    position: relative;
+  }
+
+  .hover-underline-animation::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #7d2ae8;
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+  }
+
+  .hover-underline-animation:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+  }
+
+  .button {
+    position: relative;
+    padding: 10px 22px;
+    border-radius: 6px;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    background-color: #7d2ae8;
+    /* background: linear-gradient(to right, #C44CF0, #A753EF); */
+    transition: all 0.2s ease;
+    text-decoration: none;
+  }
+
+  .button:active {
+    transform: scale(0.96);
+  }
+
+  .button:before,
+  .button:after {
+    position: absolute;
+    content: "";
+    width: 150%;
+    left: 50%;
+    height: 100%;
+    transform: translateX(-50%);
+    z-index: -1000;
+    background-repeat: no-repeat;
+  }
+
+  .button:hover:before {
+    top: -70%;
+    background-image: radial-gradient(circle, #7d2ae8 20%, transparent 20%),
+      radial-gradient(circle, transparent 20%, #7d2ae8 20%, transparent 30%),
+      radial-gradient(circle, #7d2ae8 20%, transparent 20%),
+      radial-gradient(circle, #7d2ae8 20%, transparent 20%),
+      radial-gradient(circle, transparent 10%, #7d2ae8 15%, transparent 20%),
+      radial-gradient(circle, #7d2ae8 20%, transparent 20%),
+      radial-gradient(circle, #7d2ae8 20%, transparent 20%),
+      radial-gradient(circle, #7d2ae8 20%, transparent 20%),
+      radial-gradient(circle, #7d2ae8 20%, transparent 20%);
+    background-size: 10% 10%, 20% 20%, 15% 15%, 20% 20%, 18% 18%, 10% 10%,
+      15% 15%, 10% 10%, 18% 18%;
+    background-position: 50% 120%;
+    animation: greentopBubbles 0.6s ease;
+  }
+
+  @keyframes greentopBubbles {
+    0% {
+      background-position: 5% 90%, 10% 90%, 10% 90%, 15% 90%, 25% 90%, 25% 90%,
+        40% 90%, 55% 90%, 70% 90%;
+    }
+
+    50% {
+      background-position: 0% 80%, 0% 20%, 10% 40%, 20% 0%, 30% 30%, 22% 50%,
+        50% 50%, 65% 20%, 90% 30%;
+    }
+
+    100% {
+      background-position: 0% 70%, 0% 10%, 10% 30%, 20% -10%, 30% 20%, 22% 40%,
+        50% 40%, 65% 10%, 90% 20%;
+      background-size: 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%;
+    }
+  }
+
+  .button:hover::after {
+    bottom: -70%;
+    background-image: radial-gradient(circle, #7d2ae8 20%, transparent 20%),
+      radial-gradient(circle, #7d2ae8 20%, transparent 20%),
+      radial-gradient(circle, transparent 10%, #7d2ae8 15%, transparent 20%),
+      radial-gradient(circle, #7d2ae8 20%, transparent 20%),
+      radial-gradient(circle, #7d2ae8 20%, transparent 20%),
+      radial-gradient(circle, #7d2ae8 20%, transparent 20%),
+      radial-gradient(circle, #7d2ae8 20%, transparent 20%);
+    background-size: 15% 15%, 20% 20%, 18% 18%, 20% 20%, 15% 15%, 20% 20%,
+      18% 18%;
+    background-position: 50% 0%;
+    animation: greenbottomBubbles 0.6s ease;
+  }
+
+  @keyframes greenbottomBubbles {
+    0% {
+      background-position: 10% -10%, 30% 10%, 55% -10%, 70% -10%, 85% -10%,
+        70% -10%, 70% 0%;
+    }
+
+    50% {
+      background-position: 0% 80%, 20% 80%, 45% 60%, 60% 100%, 75% 70%, 95% 60%,
+        105% 0%;
+    }
+
+    100% {
+      background-position: 0% 90%, 20% 90%, 45% 70%, 60% 110%, 75% 80%, 95% 70%,
+        110% 10%;
+      background-size: 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%;
+    }
+  }
+</style>
