@@ -6,9 +6,9 @@
     <style>
       body {
         overflow: hidden;
-        user-select: none;         
-    -webkit-user-select: none; 
-    -ms-user-select: none;
+        user-select: none;
+        -webkit-user-select: none;
+        -ms-user-select: none;
       }
       .mainCont {
         height: 100vh;
@@ -21,7 +21,9 @@
       }
       .details {
         position: absolute;
-        background: #2a3747;
+        /* background: #2a3747; */
+        background: #212529;
+
         height: 70%;
         width: 70%;
         top: 12%;
@@ -34,13 +36,13 @@
         grid-template-columns: repeat(2, 1fr);
       }
       .upCont {
-        height: 40%;
+        height: 45%;
         width: 100%;
         background: #212529;
       }
 
       .lowCont {
-        height: 60%;
+        height: 55%;
         width: 100%;
         background: #000;
       }
@@ -69,13 +71,13 @@
         box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
           rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
           rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
-          transition: all 300ms ease-in-out;
+        transition: all 300ms ease-in-out;
       }
-      .box:hover{
+      .box:hover {
         cursor: default;
         transform: scale(1.08);
       }
-      .cardCont{
+      .cardCont {
         display: flex;
         align-items: center;
         gap: 20px;

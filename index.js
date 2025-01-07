@@ -30,6 +30,10 @@ app.use(express.static(path.resolve(__dirname, "./public")));
 //db connection
 dbConnect();
 
+//connecting with cloudinary
+const cloudinaryConnect = require("./config/cloudinary");
+cloudinaryConnect();
+
 //home route --> default one
 app.get("/", async (req, res) => {
   const { category } = req.query || "";
@@ -53,5 +57,14 @@ app.get("/", async (req, res) => {
 //other routes
 app.use("/user", userRoutes);
 app.use("/blog", restrictToLoggedinUserOnly, blogRoutes);
+//error handling for routes
+app.use((req, res, next) => {
+  res.status(404).render("404", { error: "Page Not Found" });
+});
+//server error
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).render("500", { error: "Something went wrong!" });
+});
 
 app.listen(PORT, () => console.log("Server started at", PORT));

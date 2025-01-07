@@ -12,6 +12,7 @@
         padding: 0;
         overflow-x: hidden;
       }
+
       .container {
         display: flex;
         flex-direction: row;
@@ -22,6 +23,7 @@
         gap: 40px;
         overflow: hidden;
       }
+
       .card {
         background: #1e1e1e;
         border: 1px solid #333;
@@ -32,35 +34,42 @@
         max-width: 100%;
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
       }
+
       .card:hover {
         transform: translateY(-5px);
         box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7);
       }
+
       .card img {
         width: 100%;
         height: 400px;
         object-fit: cover;
       }
+
       .card-body {
         padding: 40px;
         text-align: left;
       }
+
       .card-title {
         font-size: 3rem;
         margin-bottom: 20px;
         color: #fff;
       }
+
       .card-text {
         color: #b0b0b0;
         font-size: 1.3rem;
         line-height: 1.8;
       }
+
       .author-text {
         font-size: 1rem;
         margin-top: 30px;
         font-style: italic;
         color: #aaa;
       }
+
       .btn-primary {
         background-color: #7d2ae8;
         border: none;
@@ -73,15 +82,17 @@
         text-decoration: none;
         transition: background-color 0.3s ease, transform 0.2s ease;
       }
+
       .btn-primary:hover {
         background-color: #591ea5;
         transform: translateY(-3px);
       }
+
       .comments-section {
         width: 350px;
         max-width: 100%;
-        /* margin-top: -15px; */
       }
+
       .comments-card,
       .form-card {
         background: #1e1e1e;
@@ -91,6 +102,7 @@
         box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
         margin-bottom: 20px;
       }
+
       .comment {
         background: #252525;
         border-radius: 10px;
@@ -98,15 +110,83 @@
         margin-bottom: 15px;
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
       }
+
       .comment p {
         margin: 0;
         font-size: 1rem;
         color: #ddd;
       }
+
       .comment .comment-author {
         margin-top: 8px;
         font-size: 0.85rem;
         color: #aaa;
+      }
+
+      /* Responsive Styles */
+      @media (max-width: 768px) {
+        .container {
+          flex-direction: column;
+          padding: 20px;
+        }
+
+        .card {
+          width: 100%;
+          max-width: 100%;
+        }
+
+        .card-body {
+          padding: 20px;
+        }
+
+        .card-title {
+          font-size: 2rem;
+        }
+
+        .card-text {
+          font-size: 1.1rem;
+        }
+
+        .author-text {
+          font-size: 0.9rem;
+        }
+
+        .btn-primary {
+          padding: 12px 25px;
+          font-size: 0.9rem;
+        }
+
+        .comments-section {
+          width: 100%;
+        }
+
+        .form-card,
+        .comments-card {
+          width: 100%;
+          padding: 20px;
+        }
+
+        .comment p {
+          font-size: 0.9rem;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .card-title {
+          font-size: 1.5rem;
+        }
+
+        .card-text {
+          font-size: 1rem;
+        }
+
+        .btn-primary {
+          width: 100%;
+        }
+
+        .comment p {
+          font-size: 0.85rem;
+        }
       }
     </style>
   </head>
@@ -126,16 +206,17 @@
               class="card-text"
               style="overflow: hidden; text-align: justify"
             >
-<%= blog.body%></pre
+<%= blog.body %></pre
             >
             <p class="card-text" style="overflow: hidden; text-align: justify">
-              Video :
+              Video:
               <a
                 target="_blank"
                 style="text-decoration: none"
                 href="<%= blog.videoLink %>"
-                ><%= blog.videoLink %></a
               >
+                <%= blog.videoLink %>
+              </a>
             </p>
             <p class="author-text">Written by <%= blog.createdBy.name %></p>
           </div>
@@ -160,13 +241,14 @@
             </button>
           </form>
         </div>
+
         <% if (locals.comments[0]) { %>
         <div class="comments-card">
           <h3
             style="color: #fff; font-weight: 700; text-align: center"
             class="mb-3"
           >
-            Total Comments : <%= comments.length %>
+            Total Comments: <%= comments.length %>
           </h3>
           <% comments.forEach(comment => { %>
           <div class="comment">

@@ -85,6 +85,29 @@
         font-size: 1.4rem;
         color: #a0a0a0;
       }
+      .card .delete-btn {
+        background-color: #ff4d4d;
+        border: none;
+        padding: 12px;
+        border-radius: 8px;
+        font-size: 1rem;
+        color: #fff;
+        width: 100%;
+        text-align: center;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+        margin-top: 10px;
+        font-weight: 500;
+      }
+
+      .card .delete-btn:hover {
+        background-color: #e04e4e;
+        transform: scale(1.02);
+      }
+
+      .card .delete-btn:focus {
+        outline: none;
+      }
     </style>
   </head>
   <body>
@@ -114,14 +137,19 @@
           <% } else { %>
           <a href="/user/signin" class="btn-primary mt-3">Login to Read More</a>
           <% } %>
+          <form action="/blog/deleteblog/<%= blog._id %>" method="post">
+            <button type="submit" class="delete-btn">Delete Blog</button>
+          </form>
         </div>
       </div>
       <% }) %>
     </div>
+
     <% } else { %>
     <p class="empty-message">
       No blogs here right now. Start by sharing your first blog!
     </p>
+
     <% } %> <%- include('./partials/scripts') %>
   </body>
 </html>
