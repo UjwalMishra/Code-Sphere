@@ -5,12 +5,14 @@
     <title>Blog Page</title>
     <style>
       body {
-        background-color: #121212;
-        color: #e0e0e0;
-        font-family: "Poppins", sans-serif;
         margin: 0;
         padding: 0;
-        overflow-x: hidden;
+        min-height: 100vh;
+        background-color: black;
+        background-image: url("/images/bgimg.jpg");
+        background-position: center;
+        color: #e0e0e0;
+        font-family: "Poppins", sans-serif;
       }
 
       .container {
@@ -37,12 +39,12 @@
 
       .card:hover {
         transform: translateY(-5px);
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7);
+        filter: drop-shadow(0 0 0.5em #aa4c8b);
       }
 
       .card img {
         width: 100%;
-        height: 400px;
+        /* height: 400px; */
         object-fit: cover;
       }
 
@@ -61,6 +63,7 @@
         color: #b0b0b0;
         font-size: 1.3rem;
         line-height: 1.8;
+        margin-bottom: 20px;
       }
 
       .author-text {
@@ -70,8 +73,8 @@
         color: #aaa;
       }
 
-      .btn-primary {
-        background-color: #7d2ae8;
+      .btn-primary1 {
+        background-color: #a92c5e;
         border: none;
         padding: 14px 30px;
         border-radius: 10px;
@@ -80,17 +83,18 @@
         margin-top: 30px;
         color: #fff;
         text-decoration: none;
-        transition: background-color 0.3s ease, transform 0.2s ease;
+        transition: all 0.3s ease, transform 0.2s ease;
       }
 
-      .btn-primary:hover {
-        background-color: #591ea5;
+      .btn-primary1:hover {
+        background-color: #be316a;
+        filter: drop-shadow(0 0 0.5em #aa4c8b);
+        /* box-shadow: #6d3159 0px 0px 30px 5px; */
         transform: translateY(-3px);
       }
 
       .comments-section {
-        width: 350px;
-        max-width: 100%;
+        width: 400px;
       }
 
       .comments-card,
@@ -104,6 +108,7 @@
       }
 
       .comment {
+        width: 100%;
         background: #252525;
         border-radius: 10px;
         padding: 15px;
@@ -123,20 +128,80 @@
         color: #aaa;
       }
 
+      /* Adjustments for the Video Link */
+      .card-text a {
+        color: #9d4780;
+        text-decoration: none;
+        display: inline-block;
+        margin-left: 5px;
+      }
+
+      .card-text a:hover {
+        color: #aa4c8b;
+        text-decoration: underline;
+      }
+
+      .body-text {
+        overflow: hidden;
+        text-align: justify;
+        white-space: pre-wrap;
+        line-height: 1.6;
+        font-size: 1rem;
+        color: #fff;
+        margin: 10px 0;
+      }
+
       /* Responsive Styles */
-      @media (max-width: 768px) {
-        .container {
-          flex-direction: column;
-          padding: 20px;
-        }
-
-        .card {
-          width: 100%;
-          max-width: 100%;
-        }
-
+      @media (max-width: 1024px) {
         .card-body {
           padding: 20px;
+        }
+
+        .card-title {
+          font-size: 2.5rem;
+        }
+
+        .card-text {
+          font-size: 1.2rem;
+        }
+
+        .author-text {
+          font-size: 1rem;
+        }
+
+        .btn-primary1 {
+          padding: 12px 25px;
+          font-size: 0.9rem;
+        }
+
+        .comments-section {
+          width: 85%;
+        }
+
+        .form-card,
+        .comments-card {
+          width: 100%;
+          padding: 20px;
+        }
+
+        .comment p {
+          font-size: 1rem;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .container {
+          width: 100%;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          /* padding: 20px; */
+        }
+        .card {
+          width: 80%;
+        }
+        .card-body {
+          padding: 15px;
         }
 
         .card-title {
@@ -151,19 +216,12 @@
           font-size: 0.9rem;
         }
 
-        .btn-primary {
-          padding: 12px 25px;
+        .btn-primary1 {
+          padding: 10px 20px;
           font-size: 0.9rem;
         }
-
         .comments-section {
-          width: 100%;
-        }
-
-        .form-card,
-        .comments-card {
-          width: 100%;
-          padding: 20px;
+          width: 80%;
         }
 
         .comment p {
@@ -172,6 +230,36 @@
       }
 
       @media (max-width: 480px) {
+        .container {
+          flex-direction: column;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          /* overflow: auto; */
+          width: 400px;
+        }
+
+        .card {
+          background: #1e1e1e;
+          border: 1px solid #333;
+          border-radius: 15px;
+          /* overflow: auto; */
+          transition: transform 0.3s ease, box-shadow 0.3s ease;
+          width: 300px;
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+        .card-body {
+          /* overflow: auto; */
+          width: 70%%;
+        }
+        .body-text {
+          text-align: start;
+          white-space: pre-wrap;
+          color: #fff;
+          font-size: 0.9rem;
+          line-height: 1.6;
+          margin: 10px 5px;
+        }
         .card-title {
           font-size: 1.5rem;
         }
@@ -180,7 +268,7 @@
           font-size: 1rem;
         }
 
-        .btn-primary {
+        .btn-primary1 {
           width: 100%;
         }
 
@@ -202,22 +290,15 @@
           />
           <div class="card-body">
             <h1 class="card-title"><%= blog.title %></h1>
-            <pre
-              class="card-text"
-              style="overflow: hidden; text-align: justify"
-            >
-<%= blog.body %></pre
-            >
-            <p class="card-text" style="overflow: hidden; text-align: justify">
+            <p class="card-text body-text"><%= blog.body %></p>
+
+            <p class="card-text">
               Video:
-              <a
-                target="_blank"
-                style="text-decoration: none"
-                href="<%= blog.videoLink %>"
-              >
+              <a target="_blank" href="<%= blog.videoLink %>">
                 <%= blog.videoLink %>
               </a>
             </p>
+
             <p class="author-text">Written by <%= blog.createdBy.name %></p>
           </div>
         </div>
@@ -236,7 +317,7 @@
                 required
               />
             </div>
-            <button type="submit" class="btn btn-primary w-100">
+            <button type="submit" class="btn-primary1 w-100">
               Submit Comment
             </button>
           </form>

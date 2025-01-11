@@ -5,7 +5,13 @@
     <title>Add New Blog Page</title>
     <style>
       body {
-        background-color: #121212;
+        margin: 0;
+        padding: 0;
+        min-height: 100vh;
+        background-color: black;
+        background-image: url("/images/bg3.png");
+        background-position: center;
+        background-size: cover;
         color: #e0e0e0;
         font-family: "Poppins", sans-serif;
       }
@@ -16,6 +22,11 @@
         background-color: #1e1e1e;
         border-radius: 10px;
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+        transition: all 300ms ease-in;
+      }
+      .container:hover {
+        transform: translateY(-8px);
+        box-shadow: #6d3159 0px 0px 30px 5px;
       }
       .form-label {
         font-size: 1.1rem;
@@ -31,12 +42,13 @@
         color: #888;
       }
       .btn-primary {
-        background-color: #7d2ae8;
+        background-color: #d43776;
         border: none;
         font-size: 1.1rem;
+        transition: all ease-in;
       }
       .btn-primary:hover {
-        background-color: #591ea5;
+        background-color: #be316a;
       }
       h2 {
         margin-bottom: 25px;

@@ -1,12 +1,22 @@
 <nav
-  class="navbar navbar-expand-lg navbar-dark bg-[#000] shadow-sm"
-  style="height: 60px; position: sticky; top: 0; z-index: 1050"
+  class="navbar navbar-expand-lg navbar-dark shadow-sm bg-black"
+  style="
+    height: 60px;
+    position: sticky;
+    top: 0;
+    z-index: 1200;
+    background: #000;
+  "
 >
   <div
     class="container-fluid d-flex align-items-center justify-content-between px-4"
-    style="margin-left: 20px; margin-right: 20px"
+    style="margin-left: 20px; margin-right: 20px; background: #000"
   >
-    <a class="navbar-brand fw-bold fs-3" href="/" style="letter-spacing: 1.5px">
+    <a
+      class="navbar-brand fw-bold fs-3 hover-underline-animation"
+      href="/"
+      style="letter-spacing: 1.5px"
+    >
       <img
         src="https://img.icons8.com/?size=48&id=Oi6NZDZTenrC&format=png"
         alt=""
@@ -22,16 +32,21 @@
       aria-controls="navbarNavDropdown"
       aria-expanded="false"
       aria-label="Toggle navigation"
+      style="background-color: #000; padding: 5px; border-radius: 6px"
     >
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse bg-[#000]" id="navbarNavDropdown">
+    <div
+      class="collapse navbar-collapse bg-gray"
+      id="navbarNavDropdown"
+      style="background-color: #000; border-radius: 8px; padding: 10px"
+    >
       <ul class="navbar-nav mx-auto gap-3 align-items-center">
         <li class="nav-item">
           <a
             class="nav-link nav-hover hover-underline-animation"
-            style="font-weight: 600"
+            style="font-weight: 600; color: #fff"
             href="/"
             >Home</a
           >
@@ -40,7 +55,7 @@
           <a
             class="nav-link nav-hover hover-underline-animation"
             href="/user/aboutus"
-            style="font-weight: 600"
+            style="font-weight: 600; color: #fff"
             >About</a
           >
         </li>
@@ -48,7 +63,7 @@
           <a
             class="nav-link nav-hover hover-underline-animation"
             href="/user/contactus"
-            style="font-weight: 600"
+            style="font-weight: 600; color: #fff"
             >Contact Us</a
           >
         </li>
@@ -57,7 +72,7 @@
           <a
             class="nav-link nav-hover hover-underline-animation"
             href="/blog/addblog"
-            style="font-weight: 600"
+            style="font-weight: 600; color: #fff"
             >Add Thoughts</a
           >
         </li>
@@ -65,7 +80,7 @@
           <a
             class="nav-link nav-hover hover-underline-animation"
             href="/blog/myblogs"
-            style="font-weight: 600"
+            style="font-weight: 600; color: #fff"
             >My Blogs</a
           >
         </li>
@@ -81,7 +96,7 @@
             role="button"
             data-bs-toggle="dropdown"
             aria-expanded="false"
-            style="font-weight: 600"
+            style="font-weight: 600; color: #fff"
           >
             <%= locals.user.name %>
           </a>
@@ -105,6 +120,9 @@
 </nav>
 
 <style>
+  .bgset {
+    background: #000;
+  }
   .hover-underline-animation {
     display: inline-block;
     position: relative;
@@ -118,13 +136,15 @@
     height: 2px;
     bottom: 0;
     left: 0;
-    background-color: #7d2ae8;
+    /* background-color: #7d2ae8; */
+    background-color: #d43776;
     transform-origin: bottom right;
     transition: transform 0.25s ease-out;
   }
 
   .hover-underline-animation:hover::after {
     transform: scaleX(1);
+    box-shadow: #d43776 0px 0px 30px 5px;
     transform-origin: bottom left;
   }
 
@@ -135,9 +155,10 @@
     border: none;
     color: #fff;
     cursor: pointer;
-    background-color: #7d2ae8;
+    background-color: #d43776;
     transition: all 0.2s ease;
     text-decoration: none;
+    text-align: center;
   }
 
   .button:active {
@@ -158,15 +179,15 @@
 
   .button:hover:before {
     top: -70%;
-    background-image: radial-gradient(circle, #7d2ae8 20%, transparent 20%),
-      radial-gradient(circle, transparent 20%, #7d2ae8 20%, transparent 30%),
-      radial-gradient(circle, #7d2ae8 20%, transparent 20%),
-      radial-gradient(circle, #7d2ae8 20%, transparent 20%),
-      radial-gradient(circle, transparent 10%, #7d2ae8 15%, transparent 20%),
-      radial-gradient(circle, #7d2ae8 20%, transparent 20%),
-      radial-gradient(circle, #7d2ae8 20%, transparent 20%),
-      radial-gradient(circle, #7d2ae8 20%, transparent 20%),
-      radial-gradient(circle, #7d2ae8 20%, transparent 20%);
+    background-image: radial-gradient(circle, #aa4c8b 20%, transparent 20%),
+      radial-gradient(circle, transparent 20%, #aa4c8b 20%, transparent 30%),
+      radial-gradient(circle, #aa4c8b 20%, transparent 20%),
+      radial-gradient(circle, #aa4c8b 20%, transparent 20%),
+      radial-gradient(circle, transparent 10%, #aa4c8b 15%, transparent 20%),
+      radial-gradient(circle, #aa4c8b 20%, transparent 20%),
+      radial-gradient(circle, #aa4c8b 20%, transparent 20%),
+      radial-gradient(circle, #aa4c8b 20%, transparent 20%),
+      radial-gradient(circle, #aa4c8b 20%, transparent 20%);
     background-size: 10% 10%, 20% 20%, 15% 15%, 20% 20%, 18% 18%, 10% 10%,
       15% 15%, 10% 10%, 18% 18%;
     background-position: 50% 120%;
@@ -193,13 +214,13 @@
 
   .button:hover::after {
     bottom: -70%;
-    background-image: radial-gradient(circle, #7d2ae8 20%, transparent 20%),
-      radial-gradient(circle, #7d2ae8 20%, transparent 20%),
-      radial-gradient(circle, transparent 10%, #7d2ae8 15%, transparent 20%),
-      radial-gradient(circle, #7d2ae8 20%, transparent 20%),
-      radial-gradient(circle, #7d2ae8 20%, transparent 20%),
-      radial-gradient(circle, #7d2ae8 20%, transparent 20%),
-      radial-gradient(circle, #7d2ae8 20%, transparent 20%);
+    background-image: radial-gradient(circle, #aa4c8b 20%, transparent 20%),
+      radial-gradient(circle, #aa4c8b 20%, transparent 20%),
+      radial-gradient(circle, transparent 10%, #aa4c8b 15%, transparent 20%),
+      radial-gradient(circle, #aa4c8b 20%, transparent 20%),
+      radial-gradient(circle, #aa4c8b 20%, transparent 20%),
+      radial-gradient(circle, #aa4c8b 20%, transparent 20%),
+      radial-gradient(circle, #aa4c8b 20%, transparent 20%);
     background-size: 15% 15%, 20% 20%, 18% 18%, 20% 20%, 15% 15%, 20% 20%,
       18% 18%;
     background-position: 50% 0%;

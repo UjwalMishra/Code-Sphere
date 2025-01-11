@@ -5,12 +5,12 @@
     <title>Home Page</title>
     <style>
       body {
-        /* background-color: #121212; */
         margin: 0;
         padding: 0;
         min-height: 100vh;
-        background-image: url("https://img.freepik.com/free-vector/gradient-wave-colorful-design-minimalist-style_483537-3753.jpg?t=st=1736273396~exp=1736276996~hmac=a2b9b8d561097eb20e6ffeaee0d92acf25c077840da57f9af359c3dac37a0c23&w=1060");
-        background-repeat: no-repeat;
+        background-color: black;
+        background-image: url("/images/bg3.png");
+        background-position: center;
         background-size: cover;
         color: #e0e0e0;
         font-family: "Poppins", sans-serif;
@@ -27,7 +27,7 @@
         border: 1px solid #292929;
         border-radius: 12px;
         overflow: hidden;
-        transition: transform 0.4s ease, box-shadow 0.4s ease;
+        transition: transform 0.4s ease, box-shadow0.4s ease;
         width: 340px;
         display: flex;
         flex-direction: column;
@@ -61,7 +61,7 @@
         margin-bottom: 30px;
       }
       .btn-primary {
-        background-color: #aa4c8b;
+        background-color: #d43776;
         border: none;
         padding: 14px;
         border-radius: 8px;
@@ -75,7 +75,7 @@
         font-weight: 500;
       }
       .btn-primary:hover {
-        background-color: #9d4780;
+        background-color: #be316a;
         transform: scale(1.02);
       }
       h1 {
@@ -108,10 +108,13 @@
         border-radius: 8px;
         font-size: 1rem;
         cursor: pointer;
-        transition: background-color 0.3s, transform 0.2s;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.9);
+        transition: all 0.3s, transform 0.2s;
       }
       .category-btn:hover {
-        background-color: #9d4780;
+        box-shadow: #6d3159 0px 0px 30px 5px;
+        /* background-color: #d43776; */
+        background-color: #be316a;
         transform: translateY(-4px);
       }
       .category-btn.active {
@@ -125,82 +128,88 @@
   <body>
     <%- include("./partials/navbar") %>
 
-    <h1>Welcome to Our Blog</h1>
-    <form action="/" method="get" class="category-filter">
-      <div class="button-group">
-        <button
-          type="submit"
-          name="category"
-          value=""
-          class="category-btn <%= locals.selectedCategory === '' ? 'active' : '' %>"
-        >
-          All
-        </button>
-        <button
-          type="submit"
-          name="category"
-          value="Web-Dev"
-          class="category-btn <%= locals.selectedCategory === 'Web-Dev' ? 'active' : '' %>"
-        >
-          Web Dev
-        </button>
-        <button
-          type="submit"
-          name="category"
-          value="DSA"
-          class="category-btn <%= locals.selectedCategory === 'DSA' ? 'active' : '' %>"
-        >
-          DSA
-        </button>
-        <button
-          type="submit"
-          name="category"
-          value="Programming-Languages"
-          class="category-btn <%= locals.selectedCategory === 'Programming-Languages' ? 'active' : '' %>"
-        >
-          Programming Languages
-        </button>
-        <button
-          type="submit"
-          name="category"
-          value="AI-ML"
-          class="category-btn <%= locals.selectedCategory === 'AI-ML' ? 'active' : '' %>"
-        >
-          AI/ML
-        </button>
-      </div>
-    </form>
-
-    <% if (locals.blogs && blogs.length > 0) { %>
-    <div class="container">
-      <% blogs.forEach(blog => { %>
-      <div class="card">
-        <img
-          src="<%= blog.coverImgUrl %>"
-          class="card-img-top"
-          alt="Blog Image"
-        />
-        <div class="card-body">
-          <div>
-            <h5 class="card-title">
-              <%= blog.title.length > 20 ? blog.title.substring(0, 20) + "..." :
-              blog.title %>
-            </h5>
-            <p class="card-text"><%= blog.body.substring(0, 80) %>...</p>
-          </div>
-          <% if (locals.user) { %>
-          <a href="/blog/<%= blog._id %>" class="btn-primary mt-3">Read More</a>
-          <% } else { %>
-          <a href="/user/signin" class="btn-primary mt-3">Login to Read More</a>
-          <% } %>
+    <div>
+      <h1>Welcome to Our Blog</h1>
+      <form action="/" method="get" class="category-filter">
+        <div class="button-group">
+          <button
+            type="submit"
+            name="category"
+            value=""
+            class="category-btn <%= locals.selectedCategory === '' ? 'active' : '' %>"
+          >
+            All
+          </button>
+          <button
+            type="submit"
+            name="category"
+            value="Web-Dev"
+            class="category-btn <%= locals.selectedCategory === 'Web-Dev' ? 'active' : '' %>"
+          >
+            Web Dev
+          </button>
+          <button
+            type="submit"
+            name="category"
+            value="DSA"
+            class="category-btn <%= locals.selectedCategory === 'DSA' ? 'active' : '' %>"
+          >
+            DSA
+          </button>
+          <button
+            type="submit"
+            name="category"
+            value="Programming-Languages"
+            class="category-btn <%= locals.selectedCategory === 'Programming-Languages' ? 'active' : '' %>"
+          >
+            Programming Languages
+          </button>
+          <button
+            type="submit"
+            name="category"
+            value="AI-ML"
+            class="category-btn <%= locals.selectedCategory === 'AI-ML' ? 'active' : '' %>"
+          >
+            AI/ML
+          </button>
         </div>
+      </form>
+
+      <% if (locals.blogs && blogs.length > 0) { %>
+      <div class="container">
+        <% blogs.forEach(blog => { %>
+        <div class="card">
+          <img
+            src="<%= blog.coverImgUrl %>"
+            class="card-img-top"
+            alt="Blog Image"
+          />
+          <div class="card-body">
+            <div>
+              <h5 class="card-title">
+                <%= blog.title.length > 20 ? blog.title.substring(0, 20) + "..."
+                : blog.title %>
+              </h5>
+              <p class="card-text"><%= blog.body.substring(0, 80) %>...</p>
+            </div>
+            <% if (locals.user) { %>
+            <a href="/blog/<%= blog._id %>" class="btn-primary mt-3"
+              >Read More</a
+            >
+            <% } else { %>
+            <a href="/user/signin" class="btn-primary mt-3"
+              >Login to Read More</a
+            >
+            <% } %>
+          </div>
+        </div>
+        <% }) %>
       </div>
-      <% }) %>
+      <% } else { %>
+      <p class="empty-message">
+        No blogs available at the moment. Check back later!
+      </p>
+      <% } %> <%- include('./partials/scripts') %>
     </div>
-    <% } else { %>
-    <p class="empty-message">
-      No blogs available at the moment. Check back later!
-    </p>
-    <% } %> <%- include('./partials/scripts') %>
   </body>
 </html>
