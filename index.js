@@ -4,6 +4,9 @@ const { dbConnect } = require("./config/dbConnection");
 
 const path = require("path");
 const cookieParser = require("cookie-parser");
+const cluster = require("cluster");
+//calculating no. of cpu's available
+const numCPUs = require("node:os").availableParallelism();
 
 const {
   checkAuthCookie,
@@ -34,37 +37,63 @@ dbConnect();
 const cloudinaryConnect = require("./config/cloudinary");
 cloudinaryConnect();
 
-//home route --> default one
-app.get("/", async (req, res) => {
-  const { category } = req.query || "";
-
-  let filter = {};
-  if (category) {
-    filter.category = category;
+//making 16 clusters
+if (cluster.isPrimary) {
+  // Fork workers.
+  for (let i = 0; i < numCPUs; i++) {
+    cluster.fork();
   }
 
-  try {
-    const allBlogs = await Blog.find(filter);
-    res.render("home", {
-      user: req.user,
-      blogs: allBlogs,
-    });
-  } catch (err) {
-    console.log(err);
-  }
-});
+  //if worker dies, restart it
+  cluster.on("exit", (worker, code, signal) => {
+    cluster.fork();
+  });
+} else {
+  //home route --> default one
+  app.get("/", async (req, res) => {
+    const { category, language } = req.query || {};
 
-//other routes
-app.use("/user", userRoutes);
-app.use("/blog", restrictToLoggedinUserOnly, blogRoutes);
-//error handling for routes
-app.use((req, res, next) => {
-  res.status(404).render("404", { error: "Page Not Found" });
-});
-//server error
-app.use((err, req, res, next) => {
-  console.error(err.stack);
-  res.status(500).render("500", { error: "Something went wrong!" });
-});
+    let filter = {};
+    // Filter by category if provided
+    if (category) {
+      filter.category = category;
+    }
 
-app.listen(PORT, () => console.log("Server started at", PORT));
+    // Filter by language based on the title (Hindi/English)
+    if (language) {
+      if (language === "hindi") {
+        filter.title = { $regex: "Hindi", $options: "i" }; // Case-insensitive search for 'Hindi'
+      } else if (language === "english") {
+        filter.title = { $not: { $regex: "Hindi", $options: "i" } }; // Exclude titles containing 'Hindi'
+      }
+    }
+
+    try {
+      //finding blogs using filter object
+      const allBlogs = await Blog.find(filter);
+      res.render("home", {
+        user: req.user,
+        blogs: allBlogs,
+        selectedCategory: category,
+        selectedLanguage: language,
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  });
+
+  //other routes
+  app.use("/user", userRoutes);
+  app.use("/blog", restrictToLoggedinUserOnly, blogRoutes);
+  //error handling for routes
+  app.use((req, res, next) => {
+    res.status(404).render("404", { error: "Page Not Found" });
+  });
+  //server error
+  app.use((err, req, res, next) => {
+    console.error(err.stack);
+    res.status(500).render("500", { error: "Something went wrong!" });
+  });
+
+  app.listen(PORT, () => console.log("Server started at", PORT));
+}

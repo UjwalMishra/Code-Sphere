@@ -118,7 +118,7 @@
         transform: translateY(-4px);
       }
       .category-btn.active {
-        background-color: #7d2ae8;
+        background-color: #be316a;
         color: #fff;
         font-weight: 600;
         transform: scale(1.05);
@@ -131,6 +131,11 @@
     <div>
       <h1>Welcome to Our Blog</h1>
       <form action="/" method="get" class="category-filter">
+        <input
+          type="hidden"
+          name="language"
+          value="<%= locals.selectedLanguage || '' %>"
+        />
         <div class="button-group">
           <button
             type="submit"
@@ -171,6 +176,32 @@
             class="category-btn <%= locals.selectedCategory === 'AI-ML' ? 'active' : '' %>"
           >
             AI/ML
+          </button>
+        </div>
+      </form>
+
+      <form action="/" method="get" class="category-filter">
+        <input
+          type="hidden"
+          name="category"
+          value="<%= locals.selectedCategory || '' %>"
+        />
+        <div class="button-group">
+          <button
+            type="submit"
+            name="language"
+            value="hindi"
+            class="category-btn <%= locals.selectedLanguage === 'hindi' ? 'active' : '' %>"
+          >
+            Hinglish
+          </button>
+          <button
+            type="submit"
+            name="language"
+            value="english"
+            class="category-btn <%= locals.selectedLanguage === 'english' ? 'active' : '' %>"
+          >
+            English
           </button>
         </div>
       </form>

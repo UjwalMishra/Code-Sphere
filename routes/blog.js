@@ -8,10 +8,11 @@ const {
 } = require("../controllers/blog");
 const Blog = require("../models/blog");
 const Comment = require("../models/comment");
+const authorizationToAdminAndModerator = require("../middlewares/authorization");
 
 const router = express.Router();
 
-router.get("/addblog", (req, res) => {
+router.get("/addblog", authorizationToAdminAndModerator, (req, res) => {
   return res.render("addblogs", {
     user: req.user,
   });

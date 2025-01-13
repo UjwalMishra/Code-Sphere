@@ -51,23 +51,8 @@
             >Home</a
           >
         </li>
-        <li class="nav-item">
-          <a
-            class="nav-link nav-hover hover-underline-animation"
-            href="/user/aboutus"
-            style="font-weight: 600; color: #fff"
-            >About</a
-          >
-        </li>
-        <li class="nav-item">
-          <a
-            class="nav-link nav-hover hover-underline-animation"
-            href="/user/contactus"
-            style="font-weight: 600; color: #fff"
-            >Contact Us</a
-          >
-        </li>
-        <% if (locals.user) { %>
+        <% if (locals.user && (locals.user.role === 'Admin' || locals.user.role
+        === 'Moderator')) { %>
         <li class="nav-item">
           <a
             class="nav-link nav-hover hover-underline-animation"
@@ -85,6 +70,22 @@
           >
         </li>
         <% } %>
+        <li class="nav-item">
+          <a
+            class="nav-link nav-hover hover-underline-animation"
+            href="/user/aboutus"
+            style="font-weight: 600; color: #fff"
+            >About</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link nav-hover hover-underline-animation"
+            href="/user/contactus"
+            style="font-weight: 600; color: #fff"
+            >Contact Us</a
+          >
+        </li>
       </ul>
 
       <ul class="navbar-nav gap-3 align-items-center">
@@ -107,10 +108,10 @@
           </ul>
         </li>
         <% } else { %>
-        <li>
+        <li class="button">
           <a class="button" href="/user/signin">Login</a>
         </li>
-        <li>
+        <li class="button">
           <a class="button" href="/user/signup">Signup</a>
         </li>
         <% } %>
@@ -120,9 +121,6 @@
 </nav>
 
 <style>
-  .bgset {
-    background: #000;
-  }
   .hover-underline-animation {
     display: inline-block;
     position: relative;
@@ -150,7 +148,7 @@
 
   .button {
     position: relative;
-    padding: 10px 22px;
+    padding: 10px 10px;
     border-radius: 6px;
     border: none;
     color: #fff;

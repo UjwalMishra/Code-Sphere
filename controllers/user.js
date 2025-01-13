@@ -11,7 +11,6 @@ const signupController = async (req, res) => {
         error: "All fields are required",
       });
     }
-
     // Email format validation (basic regex)
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
@@ -27,17 +26,13 @@ const signupController = async (req, res) => {
         error: "Email already registered, please use a different one",
       });
     }
-
-    // Hash the password before saving
-    const hashedPassword = await bcrypt.hash(password, 10);
-
     await User.create({
       name,
       email,
-      password: hashedPassword,
+      password, //we hashed the password before sending it to the server in models
     });
 
-    return res.redirect("/signin");
+    return res.redirect("/user/signin");
   } catch (err) {
     console.error("Error during signup:", err);
     return res.status(500).render("signup", {
@@ -54,14 +49,12 @@ const signinController = async (req, res) => {
         error: "Please enter both email and password",
       });
     }
-
     const user = await User.findOne({ email });
     if (!user) {
       return res.render("signin", {
         error: "User not found, Please signup",
       });
     }
-
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
       return res.render("signin", {

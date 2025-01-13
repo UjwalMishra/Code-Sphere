@@ -141,8 +141,18 @@
           <% } else { %>
           <a href="/user/signin" class="btn-primary mt-3">Login to Read More</a>
           <% } %>
-          <form action="/blog/deleteblog/<%= blog._id %>" method="post">
-            <button type="submit" class="delete-btn">Delete Blog</button>
+          <form
+            id="delete-form-<%= blog._id %>"
+            action="/blog/deleteblog/<%= blog._id %>"
+            method="post"
+          >
+            <button
+              type="button"
+              class="delete-btn"
+              onclick="confirmDelete('<%= blog._id %>')"
+            >
+              Delete Blog
+            </button>
           </form>
         </div>
       </div>
@@ -155,5 +165,23 @@
     </p>
 
     <% } %> <%- include('./partials/scripts') %>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+      function confirmDelete(blogId) {
+        Swal.fire({
+          title: "Are you sure?",
+          text: "This action cannot be undone!",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#d33",
+          cancelButtonColor: "#3085d6",
+          confirmButtonText: "Yes, delete it!",
+        }).then((result) => {
+          if (result.isConfirmed) {
+            document.getElementById(`delete-form-${blogId}`).submit();
+          }
+        });
+      }
+    </script>
   </body>
 </html>
