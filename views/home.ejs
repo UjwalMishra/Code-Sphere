@@ -9,9 +9,11 @@
         padding: 0;
         min-height: 100vh;
         background-color: black;
-        background-image: url("/images/bg3.png");
+        background-image: url("https://res.cloudinary.com/dzfkistam/image/upload/v1736862343/rb_4197_pbjapt.png");
         background-position: center;
         background-size: cover;
+        background-attachment: fixed;
+
         color: #e0e0e0;
         font-family: "Poppins", sans-serif;
       }
@@ -92,11 +94,14 @@
       }
       .category-filter {
         display: flex;
+        width: 100%;
         justify-content: center;
         margin: 40px 0;
+        padding: 0px 30px;
       }
       .button-group {
         display: flex;
+        justify-content: center;
         gap: 15px;
         flex-wrap: wrap;
       }
@@ -129,7 +134,7 @@
     <%- include("./partials/navbar") %>
 
     <div>
-      <h1>Welcome to Our Blog</h1>
+      <h1>Welcome to Code Sphere</h1>
       <form action="/" method="get" class="category-filter">
         <input
           type="hidden"
@@ -164,10 +169,10 @@
           <button
             type="submit"
             name="category"
-            value="Programming-Languages"
-            class="category-btn <%= locals.selectedCategory === 'Programming-Languages' ? 'active' : '' %>"
+            value="Databases"
+            class="category-btn <%= locals.selectedCategory === 'Databases' ? 'active' : '' %>"
           >
-            Programming Languages
+            Databases
           </button>
           <button
             type="submit"

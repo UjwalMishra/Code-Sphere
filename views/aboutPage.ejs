@@ -7,188 +7,185 @@
       body {
         margin: 0;
         padding: 0;
-        color: #e0e0e0;
-        font-family: "Poppins", sans-serif;
-        overflow-x: hidden;
-      }
-      .mainCont {
-        background-color: #000;
-        background-image: url("/images/bg3.png");
-        background-position: center;
-        background-size: cover;
-        height: 100vh;
-        width: 100vw;
-        position: relative;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        overflow-x: hidden;
-      }
-      .details {
-        position: absolute;
-        background: #000;
-        height: 70%;
-        width: 70%;
-        top: 12%;
-        border: 1px solid #f5deb3;
-        border-radius: 20px;
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        overflow-x: hidden;
-        transition: all 300ms ease-in;
-      }
-      .details:hover {
-        transform: translateY(-5px);
-        filter: drop-shadow(0 0 0.5em #f5deb3);
-      }
-      .slider-wrapper {
+        font-family: Arial, sans-serif;
+        user-select: none;
         width: 100%;
-        height: 100%;
+        min-height: 100vh;
+        overflow-x: hidden;
+      }
+
+      .cont {
+        min-height: 100vh;
+        width: 100%;
+        background: linear-gradient(to bottom, #000 50%, #212529 50%);
         display: flex;
         justify-content: center;
         align-items: center;
-        margin-right: 30px;
+        color: white;
+        padding: 10px;
+        box-sizing: border-box;
       }
-      .slider {
-        display: flex;
-        aspect-ratio: 16 / 9;
-        overflow-x: auto;
-        scroll-snap-type: x mandatory;
-        scroll-behavior: smooth;
-        box-shadow: 0 1.5rem 3rem -0.75rem hsla(0, 0%, 0%, 0.25);
+
+      .details {
+        background: #343a40;
+        width: 80%;
+        max-width: 1200px;
+        min-height: 70%;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+        padding: 30px;
         border-radius: 10px;
-        -ms-overflow-style: none;
-        scrollbar-width: none;
-        width: 700px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
       }
-      .slider img {
-        flex: 1 0 100%;
-        scroll-snap-align: start;
+
+      .mainimg {
+        border-radius: 10px;
+        width: 100%;
+        max-height: 300px;
         object-fit: cover;
-        border-radius: 10px;
       }
-      .slider::-webkit-scrollbar {
-        display: none;
+
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: wrap;
+        text-align: center;
       }
-      .left {
+
+      .left,
+      .right {
         display: flex;
         flex-direction: column;
-        justify-content: center;
         align-items: center;
+        justify-content: center;
       }
-      .left h1 {
-        margin-left: 50px;
-        font-size: 6rem;
-        text-align: justify;
-      }
-      .abtdetail {
-        text-align: justify;
-        margin-left: 50px;
-        font-size: 16px;
-      }
-      .abtend {
-        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-          Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
-          sans-serif;
-        width: 90%;
-        font-size: 2rem;
-        margin-top: 30px;
-        margin-left: 50px;
-        color: wheat;
-      }
+
       .cardCont {
         display: flex;
-        align-items: center;
+        flex-direction: column;
         gap: 20px;
-        margin-top: 30px;
+        margin-top: 20px;
       }
-      .box {
-        background: #000;
-        width: 180px;
-        padding: 10px;
-        font-weight: 600;
-        font-size: 18px;
-        border-radius: 10px;
-        margin-bottom: 10px;
-        box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
-          rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
-          rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
-        transition: all 300ms ease-in-out;
+
+      @media (max-width: 1440px) {
+        .details {
+          width: 90%;
+          gap: 20px;
+        }
+        .mainimg {
+          max-height: 250px;
+        }
+        .right h1 {
+          font-size: 2rem;
+        }
+        .right p {
+          font-size: 1.1rem;
+        }
       }
-      .box:hover {
-        cursor: default;
-        transform: scale(1.08);
+
+      @media (max-width: 1024px) {
+        .details {
+          gap: 20px;
+          padding: 20px;
+        }
+        .mainimg {
+          max-height: 200px;
+        }
+        .logo {
+          flex-direction: column;
+        }
+        .right h1 {
+          font-size: 1.8rem;
+        }
+        .right p {
+          font-size: 1rem;
+          padding: 0 10px;
+          text-align: center;
+        }
       }
-      body {
-        background-color: #f8fafc;
+
+      @media (max-width: 768px) {
+        .details {
+          gap: 15px;
+          padding: 15px;
+        }
+        .mainimg {
+          max-height: 180px;
+        }
+        .right h1 {
+          font-size: 1.6rem;
+        }
+        .right p {
+          font-size: 0.9rem;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .details {
+          gap: 10px;
+          padding: 10px;
+        }
+        .mainimg {
+          max-height: 150px;
+        }
+        .logo img {
+          height: 40px;
+          width: 40px;
+        }
+        .right h1 {
+          font-size: 1.4rem;
+        }
+        .right p {
+          font-size: 0.8rem;
+        }
       }
     </style>
   </head>
   <body>
     <%- include("./partials/navbar") %>
-    <div class="mainCont">
+    <div class="cont">
       <div class="details">
-        <!-- right-content  -->
         <div class="left">
-          <h1>Hustle Hard</h1>
-          <!-- <p class="abtdetail">
-              Our mission is to create a centralized platform where students can
-              find everything they need to start learning without searching
-              endlessly.
-              <br />
-              Whether you're just starting or looking to strengthen your
-              foundations, we've got you covered.
-            </p> -->
-          <p class="abtend">
-            Start your learning <br />
-            journey today
-          </p>
+          <div class="logo">
+            <span style="font-size: 3rem; font-weight: bold">CODE</span>
+            <img
+              src="/images/logo.png"
+              alt=""
+              style="height: 50px; width: 50px"
+            />
+            <span style="font-size: 3rem; font-weight: bold">SPHERE</span>
+          </div>
+          <img
+            src="/images/abtpage.png"
+            alt="A blog-themed background"
+            class="mainimg"
+          />
         </div>
+        <div class="right">
+          <h1 style="font-weight: bold">ABOUT PAGE</h1>
+          <p style="text-align: justify; padding-right: 30px; margin-top: 20px">
+            We’re your go-to buddy for mastering web dev, AI, ML, DSA, and
+            coding all in one place! 🚀 We handpick the coolest tutorials and
+            blogs so you can learn, build, and level up while having fun. Let’s
+            make tech learning awesome together! 😎✨
+          </p>
 
-        <!-- left Section -->
-        <div class="slider-wrapper">
-          <div class="slider" id="slider">
-            <img
-              id="slide-1"
-              src="https://res.cloudinary.com/dzfkistam/image/upload/v1736511324/Quotefancy-8120401-3840x2160_jaqcbt.jpg"
-              alt="3D rendering of an imaginary orange planet in space"
-            />
-            <img
-              id="slide-2"
-              src="https://res.cloudinary.com/dzfkistam/image/upload/v1736511319/Quotefancy-8119915-3840x2160_g3qmya.jpg"
-              alt="3D rendering of an imaginary green planet in space"
-            />
-            <img
-              id="slide-3"
-              src="https://res.cloudinary.com/dzfkistam/image/upload/v1736511314/Quotefancy-1071009-3840x2160_zcctfk.jpg"
-              alt="3D rendering of an imaginary blue planet in space"
-            />
-
-            <img
-              id="slide-4"
-              src="https://res.cloudinary.com/dzfkistam/image/upload/v1736511297/Quotefancy-1700728-3840x2160_eohzzg.jpg"
-              alt="3D rendering of an imaginary blue planet in space"
-            />
+          <div class="cardCont">
+            <div>
+              <span style="font-weight: bold"> Key Points of Your Site:</span>
+              <br />
+              1. All-in-One Learning Hub for web dev, AI, ML, DSA, and more.
+              🚀<br />
+              2. Curated Content with YouTube videos and blogs. 📚<br />
+              3. Beginner-Friendly.🐣 <br />
+              4. Learn at Your Own Pace with no pressure. ⏳ <br />
+              5. Fun & Engaging learning experience. 🎉
+            </div>
           </div>
         </div>
       </div>
     </div>
-    <script>
-      const slider = document.getElementById("slider");
-      let index = 0;
-
-      function autoSlide() {
-        const slides = slider.children;
-        index = (index + 1) % slides.length;
-        slider.scrollTo({
-          left: slider.clientWidth * index,
-          behavior: "smooth",
-        });
-      }
-
-      setInterval(autoSlide, 3000); // Adjust the time in milliseconds for auto-slide
-    </script>
-    <%- include('./partials/scripts') %>
   </body>
 </html>

@@ -13,11 +13,11 @@ const {
   restrictToLoggedinUserOnly,
 } = require("./middlewares/authentication");
 
+//home-page controller
+const { homeRouteController } = require("./controllers/home");
 //importing routes
 const userRoutes = require("./routes/user");
 const blogRoutes = require("./routes/blog");
-//importing Model
-const Blog = require("./models/blog");
 
 const app = express();
 const PORT = process.env.PORT || 8000;
@@ -50,45 +50,17 @@ if (cluster.isPrimary) {
   });
 } else {
   //home route --> default one
-  app.get("/", async (req, res) => {
-    const { category, language } = req.query || {};
-
-    let filter = {};
-    // Filter by category if provided
-    if (category) {
-      filter.category = category;
-    }
-
-    // Filter by language based on the title (Hindi/English)
-    if (language) {
-      if (language === "hindi") {
-        filter.title = { $regex: "Hindi", $options: "i" }; // Case-insensitive search for 'Hindi'
-      } else if (language === "english") {
-        filter.title = { $not: { $regex: "Hindi", $options: "i" } }; // Exclude titles containing 'Hindi'
-      }
-    }
-
-    try {
-      //finding blogs using filter object
-      const allBlogs = await Blog.find(filter);
-      res.render("home", {
-        user: req.user,
-        blogs: allBlogs,
-        selectedCategory: category,
-        selectedLanguage: language,
-      });
-    } catch (err) {
-      console.log(err);
-    }
-  });
+  app.get("/", homeRouteController);
 
   //other routes
   app.use("/user", userRoutes);
   app.use("/blog", restrictToLoggedinUserOnly, blogRoutes);
+
   //error handling for routes
   app.use((req, res, next) => {
     res.status(404).render("404", { error: "Page Not Found" });
   });
+
   //server error
   app.use((err, req, res, next) => {
     console.error(err.stack);
