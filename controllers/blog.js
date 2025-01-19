@@ -152,7 +152,7 @@ const fetchMyBlogController = async (req, res) => {
 };
 
 const addBlogGetController = (req, res) => {
-  return res.render("addblogs", {
+  return res.render("addBlogs", {
     user: req.user,
   });
 };
