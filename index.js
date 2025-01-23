@@ -25,7 +25,7 @@ const PORT = process.env.PORT || 8000;
 //middlewares
 app.set("view engine", "ejs");
 app.set("views", path.resolve("./views"));
-app.use(express.urlencoded({ extented: false }));
+app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(checkAuthCookie("token"));
 app.use(express.static(path.resolve(__dirname, "./public")));
