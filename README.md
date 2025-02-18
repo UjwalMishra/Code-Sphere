@@ -18,21 +18,38 @@ Code Sphere is a web platform built to help students **easily start their tech j
 🔐 **Auth & Security:** JWT (secure access & API protection)  
 ☁ **Cloud Storage:** Cloudinary (because images need a home too!)  
 
-## 🚀 **How to Get Started?**  
-1️⃣ **Clone the repo:**  
+## 🚀 Getting Started
+
+1. **Clone the repo:**  
    ```sh
-   git clone https://github.com/your-username/Code-Sphere.git  
-   ```  
-2️⃣ **Install the dependencies:**  
+   git clone https://github.com/your-username/Code-Sphere.git
+   ```
+
+2. **Install dependencies:**  
    ```sh
    cd Code-Sphere  
-   npm install  
+   npm install
+   ```
+
+3. **Environment Variables Setup:**  
+   Create a `.env` file in the root directory and add the following:
+   ```env
+   PORT=3000  
+   DB_URL=your_mongodb_connection_string  
+   JWT_SECRET=your_secret_key  
+   CLOUDINARY_NAME=your_cloudinary_name  
+   CLOUDINARY_API_KEY=your_cloudinary_api_key  
+   CLOUDINARY_API_SECRET=your_cloudinary_api_secret  
    ```  
-3️⃣ **Set up environment variables:** *(Create a `.env` file and add your secrets!)*
-4️⃣ **Run the project:**  
+   *Replace the placeholder values with your own credentials. Make sure to keep this file secure!*
+
+4. **Start the project:**  
    ```sh
-   npm start  
-   ```  
+   npm run dev
+   ```
+
+---
+
 🚀 *BOOM!* You're inside **Code Sphere**! 🌎✨  
 
 ## ❤️ **Want to Contribute?**  
